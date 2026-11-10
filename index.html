@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0E1014">
+    <meta name="description" content="Índice dos projetos desenvolvidos em Front-end.">
+    <title>Projetos | Front-end</title>
+    <style>
+        @font-face {
+            font-family: "Poppins";
+            src: url("tecboard/fonts/Poppins-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Roboto";
+            src: url("tecboard/fonts/Roboto-Bold.ttf") format("truetype");
+            font-weight: 400 700;
+            font-display: swap;
+        }
+
+        :root {
+            color-scheme: dark;
+            --background: #0E1014;
+            --surface: #191B22;
+            --text: #FFFFFF;
+            --muted: #B8B8C2;
+            --purple: #9747FF;
+            --purple-hover: #B233EB;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: radial-gradient(ellipse at 50% 35%, #24143A 0, var(--background) 52%);
+            color: var(--text);
+            font-family: "Roboto", Arial, sans-serif;
+        }
+
+        .page {
+            width: min(1120px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 48px 0 64px;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 42px;
+        }
+
+        .brand img {
+            display: block;
+            width: 205px;
+            height: auto;
+        }
+
+        .header-note {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        main {
+            padding-top: clamp(72px, 12vw, 140px);
+        }
+
+        .eyebrow {
+            margin: 0 0 16px;
+            color: #C99DFF;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            max-width: 760px;
+            margin-bottom: 20px;
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.08;
+        }
+
+        h1 span {
+            color: var(--purple);
+        }
+
+        .intro {
+            max-width: 620px;
+            margin-bottom: 52px;
+            color: var(--muted);
+            font-size: clamp(17px, 2vw, 20px);
+            line-height: 1.65;
+        }
+
+        .projects-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .projects-heading h2 {
+            margin-bottom: 0;
+            font-family: "Poppins", sans-serif;
+            font-size: 24px;
+        }
+
+        .project-count {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: 22px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .project-card {
+            display: flex;
+            min-height: 100%;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #34313D;
+            border-radius: 20px;
+            background: var(--surface);
+            color: inherit;
+            text-decoration: none;
+            transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .project-card:hover,
+        .project-card:focus-visible {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+            box-shadow: 0 16px 42px #9747FF24;
+        }
+
+        .project-card:focus-visible {
+            outline: 3px solid #C99DFF;
+            outline-offset: 4px;
+        }
+
+        .project-art {
+            display: grid;
+            min-height: 220px;
+            place-items: center;
+            overflow: hidden;
+            background: radial-gradient(ellipse, #51218B 0, #24143A 56%, #191B22 78%);
+        }
+
+        .project-art img {
+            display: block;
+            width: min(92%, 430px);
+            height: 220px;
+            object-fit: contain;
+        }
+
+        .project-info {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 22px 24px 24px;
+        }
+
+        .project-type {
+            margin-bottom: 10px;
+            color: #C99DFF;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .project-info h3 {
+            margin: 0 0 8px;
+            font-family: "Poppins", sans-serif;
+            font-size: 22px;
+        }
+
+        .project-info p {
+            margin-bottom: 22px;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .project-link span {
+            color: var(--purple);
+            font-size: 20px;
+            transition: transform 180ms ease;
+        }
+
+        .project-card:hover .project-link span,
+        .project-card:focus-visible .project-link span {
+            transform: translateX(4px);
+        }
+
+        footer {
+            margin-top: 56px;
+            color: #85838D;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                width: min(100% - 32px, 480px);
+                padding-top: 28px;
+            }
+
+            .brand img {
+                width: 160px;
+            }
+
+            .header-note {
+                font-size: 12px;
+            }
+
+            main {
+                padding-top: 84px;
+            }
+
+            .intro {
+                margin-bottom: 38px;
+            }
+
+            .project-art,
+            .project-art img {
+                min-height: 190px;
+                height: 190px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <a class="brand" href="index.html" aria-label="Página inicial dos projetos">
+                <img src="tecboard/img/logo-tecboard-branco.png" alt="Tecboard">
+            </a>
+            <span class="header-note">Projetos Front-end</span>
+        </header>
+
+        <main>
+            <p class="eyebrow">Portfólio de projetos</p>
+            <h1>Ideias que ganham <span>vida na web.</span></h1>
+            <p class="intro">Explore os projetos desenvolvidos. A lista reúne aplicações e páginas organizadas em suas próprias pastas.</p>
+
+            <section aria-labelledby="projects-title">
+                <div class="projects-heading">
+                    <h2 id="projects-title">Projetos</h2>
+                    <span class="project-count">01 projeto</span>
+                </div>
+
+                <ul class="project-list">
+                    <li>
+                        <a class="project-card" href="tecboard/index.html">
+                            <div class="project-art">
+                                <img src="tecboard/img/celulares-sobrespostos-desktop.png" alt="Prévia do site Tecboard em dois celulares">
+                            </div>
+                            <div class="project-info">
+                                <span class="project-type">Landing page</span>
+                                <h3>Tecboard</h3>
+                                <p>Uma página para uma plataforma de monitoramento com alertas inteligentes.</p>
+                                <span class="project-link">Acessar projeto <span aria-hidden="true">→</span></span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Para adicionar projetos futuros, inclua outro item <li> com um link para a pasta do projeto. -->
+                </ul>
+            </section>
+        </main>
+
+        <footer>Novos projetos podem ser adicionados à lista conforme forem criados.</footer>
+    </div>
+</body>
+</html>
